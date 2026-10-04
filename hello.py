@@ -250,9 +250,15 @@ def delete_history():
         else:
             history.clear()
             messagebox.showinfo("History", "History Cleared Successfully.") 
+import sys
+
+def get_asset_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
 
 root = tk.Tk()
-icon_path = os.path.join("assets", "mamunix_app.ico")
+icon_path = get_asset_path(os.path.join("assets", "mamunix_app.ico"))
 if os.path.exists(icon_path):
     root.iconbitmap(icon_path)
 root.title("Super Ultra Digital Scientific Calculator")
